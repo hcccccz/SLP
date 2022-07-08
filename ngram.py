@@ -16,7 +16,7 @@ The Chinese Communist Party is organized on the basis of democratic centralism, 
 
 text1 = text1.lower()
 
-text_list = sent_tokenize(text1)
+
 
 def sentence_sub(text):
     sent = re.sub("\[\d+\]","",text)
@@ -33,35 +33,33 @@ def index_count(seq,word):
     else:
         pass
 
-text_list = [sentence_sub(text) for text in text_list]
-
-pattern = re.compile("[^ ]+ [^ ]+")
-text_list = [re.findall(pattern,text) for text in text_list]
 
 
 
 
-# text_list = [text.split() for text in text_list] # 2d list
+def n_gram(n,corpus):
+    text_list = sent_tokenize(corpus)
+    text_list = [sentence_sub(text) for text in text_list]
+    pattern_str = " ".join(["[^ ]+" for i in range(n)])
 
-text = [t for text in text_list for t in text] #nested list comprehension
-freq_t = {t:text.count(t) for t in text} #frequancy table
-# print(freq_t)
-# print([i+1 for i in range(len(text_list[0])) if text_list[0][i] == "the"]) #return all index of matching
+    pattern = re.compile(pattern_str)
+    text_list = [re.findall(pattern,text) for text in text_list]
+    # text_list = [text.split() for text in text_list] # 2d list
+    text = [t for text in text_list for t in text] #nested list comprehension
+    freq_t = {t:text.count(t) for t in text} #frequancy table
+    # print([i+1 for i in range(len(text_list[0])) if text_list[0][i] == "the"]) #return all index of matching
+    d_word = {}
+    for word in freq_t.keys():
+        l_freq = []
+        for sent in text_list:
+            id = [i for i in range(len(sent)-1) if sent[i] == word]
+            if id:
+                for i in id:
+                    latter_word = re.search("[^ ]+",sent[i+1]).group()
+                    l_freq.append(latter_word)
+        freq = freq_t[word]
+        d_word[word] = {word:l_freq.count(word)/freq for word in set(l_freq)}
+    return d_word
 
 
-d_word = {}
-for word in freq_t.keys():
-    l_freq = []
-    for sent in text_list:
-        id = [i for i in range(len(sent)-1) if sent[i] == word]
-        if id:
-            for i in id:
-                # latter_word = re.search("[^ ]+",sent[i+1]).group()
-                l_freq.append(sent[i+1])
-    freq = freq_t[word]
-    d_word[word] = {word:l_freq.count(word)/freq for word in set(l_freq)}
-
-print(sum(d_word["[s] [s]"].values()))
-
-
-
+print(n_gram(5,text1).keys())
