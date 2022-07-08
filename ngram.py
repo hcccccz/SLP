@@ -1,7 +1,7 @@
 from nltk.tokenize import sent_tokenize,word_tokenize,wordpunct_tokenize
 import re
 
-#N-gram models
+#N-gram model
 
 
 
