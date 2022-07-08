@@ -1,5 +1,10 @@
 from nltk.tokenize import sent_tokenize,word_tokenize,wordpunct_tokenize
 import re
+
+#N-gram models
+
+
+
 text1 = """The Chinese Communist Party (CCP),[4] officially the Communist Party of China (CPC),[5] is the founding and sole ruling party of the People's Republic of China (PRC).[6][7] The CCP was founded in 1921 by Chen Duxiu and Li Dazhao. Mao Zedong was a founding member of the party and rose through its ranks to become its leader and chairman in 1943.[8] The CCP under his leadership emerged victorious in the Chinese Civil War against the Kuomintang, and in 1949 Mao proclaimed the establishment of the People's Republic of China. Since then, the CCP has governed China as the leader of the United Front coalition with eight other parties, and has sole control over the People's Liberation Army (PLA).[9] Each successive leader of the CCP has added their own theories to the party's constitution, which outlines the ideological beliefs of the party, collectively referred to as socialism with Chinese characteristics. As of 2021, the CCP has more than 95 million members, making it the second largest political party by party membership in the world after India's Bharatiya Janata Party.[10] The Chinese public generally refer to the CCP as simply "the Party".[5]
 
 In 1921, Chen Duxiu and Li Dazhao led the founding of the CCP with the help of the Far Eastern Bureau of the Communist Party of the Soviet Union and Far Eastern Secretariat of the Communist International.[11][12] For the first six years of its history, the CCP aligned itself with the Kuomintang (KMT) as the organized left-wing of the larger nationalist movement. However, when the right-wing of the KMT, led by Chiang Kai-shek, turned on the CCP and massacred tens of thousands of the party's members, the two parties split and began a prolonged civil war. During the next ten years of guerrilla warfare, Mao Zedong rose to become the most influential figure in the CCP and the party established a strong base among the rural peasantry with its land reform policies. Support for the CCP continued to grow throughout the Second Sino-Japanese War, and after the Japanese surrender in 1945, the CCP emerged triumphant in the communist revolution against the KMT government. After the retreat of KMT to Taiwan the CCP established the People's Republic of China on 1 October 1949.
@@ -57,3 +62,6 @@ for word in freq_t.keys():
     d_word[word] = {word:l_freq.count(word)/freq for word in set(l_freq)}
 
 print(sum(d_word["[s] [s]"].values()))
+
+
+
