@@ -62,4 +62,4 @@ def n_gram(n,corpus):
     return d_word
 
 
-print(n_gram(5,text1).keys())
+print(n_gram(3,text1))
